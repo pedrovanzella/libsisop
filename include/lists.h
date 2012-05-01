@@ -3,7 +3,7 @@
 
 #include "pcb.h"
 
-enum priority_t {high, medium, low};
+enum priority_t {prio_high, prio_medium, prio_low};
 
 struct list_t {
 	enum priority_t prio; /* make sure to move to right list if prio != next->prio */

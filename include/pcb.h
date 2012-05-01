@@ -4,7 +4,7 @@
 #define _XOPEN_SOURCE /* To compile under OSX */
 #include <ucontext.h>
 
-enum status_t {ready, running, blocked};
+enum status_t {ready, blocked};
 
 struct pcb_t {
 	int pid;
