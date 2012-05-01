@@ -5,27 +5,50 @@
 #include "../include/lists.h"
 #include "../include/error.h"
 
-struct list_t* high_priority;
-struct list_t* medium_priority;
-struct list_t* low_priority;
+struct list_t* high_priority_ready;
+struct list_t* high_priority_blocked;
+
+struct list_t* medium_priority_ready;
+struct list_t* medium_priority_blocked;
+
+struct list_t* low_priority_ready;
+struct list_t* low_priority_blocked;
 
 int libsisop_init()
 {
-	high_priority = new_list(prio_high);
-	if (!high_priority) {
-		fprintf(stderr, "[-] Failed to init high priority queue\n");
+	high_priority_ready = new_list(prio_high);
+	if (!high_priority_ready) {
+		fprintf(stderr, "[-] Failed to init high priority ready queue\n");
 		return ERR_LIST_MALLOC;
 	}
 
-	medium_priority = new_list(prio_medium);
-	if (!medium_priority) {
-		fprintf(stderr, "[-] Failed to init medium priority queue\n");
+	high_priority_blocked = new_list(prio_high);
+	if (!high_priority_blocked) {
+		fprintf(stderr, "[-] Failed to init high priority blocked queue\n");
 		return ERR_LIST_MALLOC;
 	}
-	
-	low_priority = new_list(prio_low);
-	if (!low_priority) {
-		fprintf(stderr, "[-] Failed to init low priority queue\n");
+
+	medium_priority_ready = new_list(prio_medium);
+	if (!medium_priority_ready) {
+		fprintf(stderr, "[-] Failed to init medium priority ready queue\n");
+		return ERR_LIST_MALLOC;
+	}
+
+	medium_priority_blocked = new_list(prio_medium);
+	if (!medium_priority_blocked) {
+		fprintf(stderr, "[-] Failed to init medium priority blocked queue\n");
+		return ERR_LIST_MALLOC;
+	}
+
+	low_priority_ready = new_list(prio_low);
+	if (!low_priority_ready) {
+		fprintf(stderr, "[-] Failed to init low priority ready queue\n");
+		return ERR_LIST_MALLOC;
+	}
+
+	low_priority_blocked = new_list(prio_low);
+	if (!low_priority_blocked) {
+		fprintf(stderr, "[-] Failed to init low priority blocked queue\n");
 		return ERR_LIST_MALLOC;
 	}
 
