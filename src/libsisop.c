@@ -5,6 +5,7 @@
 #include "../include/lists.h"
 #include "../include/pcb.h"
 #include "../include/error.h"
+#include "../include/dispatcher.h"
 
 struct list_t* ready;
 struct list_t* blocked;
@@ -45,6 +46,8 @@ int mproc_create(int prio, void*(*start_routine)(void*), void * arg)
 
 void mproc_yield(void)
 {
+	struct pcb_t* next = find_next_of_equal_or_higher_priority(running_proc);
+
 
 }
 

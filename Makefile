@@ -4,9 +4,14 @@ LIBPATH = lib
 
 all: $(LIBPATH)/libsisop.a tests
 
-$(LIBPATH)/libsisop.a: bin/libsisop.o bin/lists.o bin/pcb.o
+$(LIBPATH)/libsisop.a: bin/libsisop.o bin/lists.o bin/pcb.o bin/dispatcher.o
 	mkdir -p lib
-	ar crs $(LIBPATH)/libsisop.a bin/libsisop.o bin/lists.o bin/pcb.o
+	ar crs $(LIBPATH)/libsisop.a bin/libsisop.o bin/lists.o bin/pcb.o bin/dispatcher.o
+
+bin/dispatcher.o: src/dispatcher.o include/dispatcher.h bin/pcb.o include/pcb.h
+	$(CC) $(CFLAGS) -c src/dispatcher.c
+	mkdir -p bin
+	mv dispatcher.o bin/dispatcher.o
 
 bin/pcb.o: src/pcb.c include/pcb.h include/error.h
 	$(CC) $(CFLAGS) -c src/pcb.c
@@ -18,7 +23,7 @@ bin/lists.o: src/lists.c bin/pcb.o include/lists.h include/error.h
 	mkdir -p bin
 	mv lists.o bin/lists.o
 
-bin/libsisop.o: src/libsisop.c include/unucleo.h bin/lists.o include/lists.h
+bin/libsisop.o: src/libsisop.c include/unucleo.h bin/lists.o bin/pcb.o bin/dispatcher.o include/dispatcher.h include/pcb.h include/lists.h
 	$(CC) $(CFLAGS) -c src/libsisop.c
 	mkdir -p bin
 	mv libsisop.o bin/libsisop.o
