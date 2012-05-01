@@ -40,7 +40,7 @@ int mproc_create(int prio, void*(*start_routine)(void*), void * arg)
 		fprintf(stderr, "[-] Failed to malloc() new pcb.\n");
 		return ERR_PCB_MALLOC;
 	}
-//	makecontext(pcb->context, (void *)(*start_routine)(void*), 1, arg);
+	makecontext(pcb->context, (void *)(*start_routine), 1, arg);
 	pcb->pid = current_pid;
 	current_pid++;
 
