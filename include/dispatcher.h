@@ -3,5 +3,6 @@
 #include "pcb.h"
 
 struct pcb_t* find_next_of_equal_or_higher_priority(struct pcb_t* pcb);
+int dispatcher_init();
 
 #endif /* _DISPATCHER_H_ */
