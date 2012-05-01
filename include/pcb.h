@@ -1,12 +1,14 @@
 #ifndef _PCB_H_
 #define _PCB_H_
+
+#define _XOPEN_SOURCE /* To compile under OSX */
 #include <ucontext.h>
 
-typedef status_t enum {ready, running, blocked};
+enum status_t {ready, running, blocked};
 
-typedef pcb_t struct {
+struct pcb_t {
 	int pid;
-	status_t status;
+	enum status_t status;
 	ucontext_t* context; /* Processes' status */
 };
 
