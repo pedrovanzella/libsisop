@@ -2,7 +2,7 @@
 #define _PCB_H_
 #include <ucontext.h>
 
-typedef status_t enum {ready, running, blocked}
+typedef status_t enum {ready, running, blocked};
 
 typedef pcb_t struct {
 	int pid;
