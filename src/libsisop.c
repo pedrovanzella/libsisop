@@ -49,7 +49,7 @@ int mproc_create(int prio, void*(*start_routine)(void*), void * arg)
 
 	add_to_end(ready[prio], node);
 
-	return 1;
+	return pcb->pid;
 }
 
 void mproc_yield(void)
