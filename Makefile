@@ -4,11 +4,16 @@ LIBPATH = lib
 
 all: $(LIBPATH)/libsisop.a tests
 
-$(LIBPATH)/libsisop.a: bin/libsisop.o bin/lists.o
+$(LIBPATH)/libsisop.a: bin/libsisop.o bin/lists.o bin/pcb.o
 	mkdir -p lib
-	ar crs $(LIBPATH)/libsisop.a bin/libsisop.o bin/lists.o
+	ar crs $(LIBPATH)/libsisop.a bin/libsisop.o bin/lists.o bin/pcb.o
 
-bin/lists.o: src/lists.c include/lists.h include/error.h
+bin/pcb.o: src/pcb.c include/pcb.h include/error.h
+	$(CC) $(CFLAGS) -c src/pcb.c
+	mkdir -p bin
+	mv pcb.o bin/pcb.o
+
+bin/lists.o: src/lists.c bin/pcb.o include/lists.h include/error.h
 	$(CC) $(CFLAGS) -c src/lists.c
 	mkdir -p bin
 	mv lists.o bin/lists.o
