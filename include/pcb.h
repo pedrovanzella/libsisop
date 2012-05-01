@@ -7,7 +7,7 @@ typedef status_t enum {ready, running, blocked};
 typedef pcb_t struct {
 	int pid;
 	status_t status;
-	ucontext_t context; /* Processes' status */
+	ucontext_t* context; /* Processes' status */
 };
 
 #endif /* _PCB_H_ */
