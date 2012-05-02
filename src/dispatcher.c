@@ -30,11 +30,13 @@ int dispatcher_init()
 	ready = new_list();
 	blocked = new_list();
 
-	running_proc = new_pcb();
+	dispatcher_context = new_pcb();
 
-	makecontext(running_proc->context, (void *)(dispatcher), 0);
-	running_proc->pid = 0;
-	running_proc->prio = 2;
+	makecontext(dispatcher_context->context, (void *)(dispatcher), 0);
+	dispatcher_context->pid = 0;
+	dispatcher_context->prio = 2;
+
+	running_proc = dispatcher_context;
 
 	current_pid = 1;
 
@@ -53,6 +55,6 @@ void dispatcher()
 		if (next) /* There is someone to be ran */
 			running_proc = next;
 
-		setcontext(running_proc->context);
+		swapcontext(running_proc->context, dispatcher_context->context);
 	}
 }

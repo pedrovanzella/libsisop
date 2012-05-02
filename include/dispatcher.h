@@ -5,6 +5,7 @@
 struct list_t* ready;
 struct list_t* blocked;
 struct pcb_t* running_proc;
+struct pcb_t* dispatcher_context;
 int current_pid;
 
 /* Returns null if no suitable process is found! */
