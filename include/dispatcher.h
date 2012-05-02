@@ -2,6 +2,11 @@
 #define _DISPATCHER_H_
 #include "pcb.h"
 
+struct list_t* ready;
+struct list_t* blocked;
+struct pcb_t* running_proc;
+int current_pid;
+
 struct pcb_t* find_next_of_equal_or_higher_priority(struct pcb_t* pcb);
 int dispatcher_init();
 

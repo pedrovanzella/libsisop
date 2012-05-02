@@ -8,7 +8,7 @@ $(LIBPATH)/libsisop.a: bin/libsisop.o bin/lists.o bin/pcb.o bin/dispatcher.o
 	mkdir -p lib
 	ar crs $(LIBPATH)/libsisop.a bin/libsisop.o bin/lists.o bin/pcb.o bin/dispatcher.o
 
-bin/dispatcher.o: src/dispatcher.o include/dispatcher.h bin/pcb.o include/pcb.h
+bin/dispatcher.o: src/dispatcher.o include/dispatcher.h bin/pcb.o bin/lists.o include/lists.h include/pcb.h
 	$(CC) $(CFLAGS) -c src/dispatcher.c
 	mkdir -p bin
 	mv dispatcher.o bin/dispatcher.o

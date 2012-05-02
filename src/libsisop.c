@@ -7,23 +7,16 @@
 #include "../include/error.h"
 #include "../include/dispatcher.h"
 
-struct list_t* ready;
-struct list_t* blocked;
+/* External symbols from pcb.h */
 
-int current_pid;
-
-struct pcb_t* running_proc; /* If NULL, we must find another process to run */
+extern struct list_t* ready;
+extern struct list_t* blocked;
+extern struct pcb_t* running_proc;
+extern int current_pid;
 
 int libsisop_init()
 {
-	ready = new_list();
-
-	blocked = new_list();
-
-	running_proc = NULL;
-
-	current_pid = 0;
-	return 1;
+	return dispatcher_init();
 }
 
 int mproc_create(int prio, void*(*start_routine)(void*), void * arg)
