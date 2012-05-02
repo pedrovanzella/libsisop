@@ -4,7 +4,8 @@
 
 void conta_par()
 {
-	for(int i = 2; i <= 20; i += 2) {
+	int i;
+	for(i = 2; i <= 20; i += 2) {
 		printf("Par:\t[%d]\n", i);
 		mproc_yield();
 	}
@@ -12,7 +13,8 @@ void conta_par()
 
 void conta_impar()
 {
-	for(int i = 1; i <= 19; i += 2) {
+	int i;
+	for(i = 1; i <= 19; i += 2) {
 		printf("Impar:\t[%d]\n", i);
 		mproc_yield();
 	}

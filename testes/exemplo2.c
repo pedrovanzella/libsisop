@@ -5,7 +5,8 @@
 void conta_um_cinco()
 {
 	printf("conta_um_cinco():\n");
-	for (int i = 1; i <= 5; i++) {
+	int i;
+	for (i = 1; i <= 5; i++) {
 		printf("[%d]\n", i);
 	}
 }
@@ -13,7 +14,8 @@ void conta_um_cinco()
 void conta_seis_nove()
 {
 	printf("conta_seis_nove():\n");
-	for (int i = 6; i <= 9; i++) {
+	int i;
+	for (i = 6; i <= 9; i++) {
 		printf("[%d]\n", i);
 	}
 }
