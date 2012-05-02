@@ -28,10 +28,13 @@ bin/libsisop.o: src/libsisop.c include/unucleo.h bin/lists.o bin/pcb.o bin/dispa
 	mkdir -p bin
 	mv libsisop.o bin/libsisop.o
 
-tests: exemplo1
+tests: exemplo1 exemplo2
 
 exemplo1: testes/exemplo1.c
 	$(CC) -o bin/exemplo1 testes/exemplo1.c $(CFLAGS) -L$(LIBPATH) -lsisop
+
+exemplo2: testes/exemplo2.c
+	$(CC) -o bin/exemplo2 testes/exemplo2.c $(CFLAGS) -L$(LIBPATH) -lsisop
 
 clean:
 	rm -rf lib
