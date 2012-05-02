@@ -9,6 +9,7 @@ int current_pid;
 
 /* Returns null if no suitable process is found! */
 struct pcb_t* find_next_of_equal_or_higher_priority(struct pcb_t* pcb);
+struct pcb_t* find_next_of_priority(int prio);
 int dispatcher_init();
 void dispatcher();
 

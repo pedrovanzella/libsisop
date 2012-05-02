@@ -3,11 +3,22 @@
 #include "../include/pcb.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 struct pcb_t* find_next_of_equal_or_higher_priority(struct pcb_t* pcb)
 {
 	struct pcb_t* next = ready->pcb;
 	while (next->prio < pcb->prio) {
+		next = ready->next->pcb;
+	}
+
+	return next;
+}
+
+struct pcb_t* find_next_of_priority(int prio)
+{
+	struct pcb_t* next = ready->pcb;
+	while (next->prio != prio) {
 		next = ready->next->pcb;
 	}
 
@@ -32,4 +43,16 @@ int dispatcher_init()
 
 void dispatcher()
 {
+	while(1) { /* Dispatcher never finishes running */
+		fprintf(stdout, "[+] Dispatcher running\n");
+
+		struct pcb_t* next = find_next_of_priority(1);
+		if (!next) /* There is no process of medium priority */
+			next = find_next_of_priority(0); /* Find someone with a low priority */
+
+		if (next) /* There is someone to be ran */
+			running_proc = next;
+
+		setcontext(running_proc->context);
+	}
 }
