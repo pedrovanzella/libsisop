@@ -49,6 +49,8 @@ void mproc_yield(void)
 	add_to_end(ready, running_proc); /* running process has yielded */
 
 	running_proc = next; /* Run next process by priority */
+
+	setcontext(running_proc->context);
 }
 
 int mproc_join(int pid)
