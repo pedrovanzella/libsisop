@@ -10,6 +10,7 @@
 
 struct pcb_t* find_next_of_equal_or_higher_priority(struct pcb_t* pcb)
 {
+	fprintf(stdout, "[+] find_next_of_equal_or_higher_priority():\n");
 	struct pcb_t* next = ready->pcb;
 	while (next->prio < pcb->prio) {
 		next = ready->next->pcb;
@@ -20,6 +21,7 @@ struct pcb_t* find_next_of_equal_or_higher_priority(struct pcb_t* pcb)
 
 struct pcb_t* find_next_of_priority(int prio)
 {
+	fprintf(stdout, "[+] find_next_of_priority():\n");
 	struct pcb_t* next = ready->pcb;
 	while (next->prio != prio) {
 		next = ready->next->pcb;
@@ -30,6 +32,7 @@ struct pcb_t* find_next_of_priority(int prio)
 
 int dispatcher_init()
 {
+	fprintf(stdout, "[+] dispatcher_init():\n");
 	ready = new_list();
 	blocked = new_list();
 
@@ -48,6 +51,7 @@ int dispatcher_init()
 
 void dispatcher()
 {
+	fprintf(stdout, "[+] dispatcher():\n");
 	while(1) { /* Dispatcher never finishes running */
 		fprintf(stdout, "[+] Dispatcher running\n");
 

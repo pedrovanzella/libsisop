@@ -19,11 +19,13 @@ extern int current_pid;
 
 int libsisop_init()
 {
+	fprintf(stdout, "[+] libsisop_init():\n");
 	return dispatcher_init();
 }
 
 int mproc_create(int prio, void*(*start_routine)(void*), void * arg)
 {
+	fprintf(stdout, "[+] mproc_create():\n");
 	if (prio >= 3) {
 		fprintf(stdout, "[-] Warning: trying to create process with priority higher than high. Defaulting to medium.\n");
 		prio = prio_medium;
@@ -47,6 +49,7 @@ int mproc_create(int prio, void*(*start_routine)(void*), void * arg)
 
 void mproc_yield(void)
 {
+	fprintf(stdout, "[+] mproc_yield():\n");
 	struct pcb_t* next = find_next_of_equal_or_higher_priority(running_proc);
 	
 	add_to_end(ready, running_proc); /* running process has yielded */
@@ -58,5 +61,6 @@ void mproc_yield(void)
 
 int mproc_join(int pid)
 {
+	fprintf(stdout, "[+] mproc_join():\n");
 	return 1;
 }
