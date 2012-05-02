@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define _XOPEN_SOURCE /* To compile under OSX */
+#include <ucontext.h>
+
 struct pcb_t* find_next_of_equal_or_higher_priority(struct pcb_t* pcb)
 {
 	struct pcb_t* next = ready->pcb;

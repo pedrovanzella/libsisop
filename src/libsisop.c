@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define _XOPEN_SOURCE /* To compile under OSX */
+#include <ucontext.h>
+
 #include "../include/unucleo.h"
 #include "../include/lists.h"
 #include "../include/pcb.h"
