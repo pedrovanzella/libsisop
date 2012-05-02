@@ -16,11 +16,7 @@ extern int current_pid;
 
 int libsisop_init()
 {
-	dispatcher_init();
-
-	mproc_create(2, (void*)dispatcher, (void*)NULL); /* Start the dispatcher */
-
-	return 1;
+	return dispatcher_init();
 }
 
 int mproc_create(int prio, void*(*start_routine)(void*), void * arg)

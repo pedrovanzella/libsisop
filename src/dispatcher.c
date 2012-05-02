@@ -18,8 +18,14 @@ int dispatcher_init()
 {
 	ready = new_list();
 	blocked = new_list();
-	running_proc = NULL;
-	current_pid = 0;
+
+	running_proc = new_pcb();
+
+	makecontext(running_proc->context, (void *)(dispatcher), 0);
+	running_proc->pid = 0;
+	running_proc->prio = 2;
+
+	current_pid = 1;
 
 	return 1;
 }
