@@ -17,7 +17,7 @@ struct list_t* new_list()
 
 int add_to_end(struct list_t* list, struct pcb_t* pcb)
 {
-	fprintf(stdout, "[+] add_to_end():\n");
+	fprintf(stdout, "[+] add_to_end(): [pid: %d]\n", pcb->pid);
 	while (list->next) { /* Find last element */
 		list = list->next;
 	}
@@ -32,7 +32,7 @@ int add_to_end(struct list_t* list, struct pcb_t* pcb)
 
 int remove_node(struct list_t* list, struct pcb_t* pcb)
 {
-	fprintf(stdout, "[+] remove_node():\n");
+	fprintf(stdout, "[+] remove_node(): [pid: %d]\n", pcb->pid);
 	while (list->next->pcb->pid != pcb->pid) { /* Find previous node in list */
 		if (list->next->pcb->pid == pcb->pid) break; // We want to stop one before
 		list = list->next;
