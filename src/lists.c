@@ -18,14 +18,16 @@ struct list_t* new_list()
 int add_to_end(struct list_t* list, struct pcb_t* pcb)
 {
 	fprintf(stdout, "\t\t[+] add_to_end(): [pid: %d]\n", pcb->pid);
-	while (list->next) { /* Find last element */
-		list = list->next;
+	struct list_t* last = list;
+	while (last->next) { /* Find last element */
+		last = list->next;
 	}
 
-	struct list_t* node = new_list();
+	struct list_t* node = (struct list_t*)malloc(sizeof(struct list_t));
 	node->pcb = pcb;
+	node->next = NULL;
 
-	list->next = node;
+	last->next = node;
 
 	return 1;
 }
