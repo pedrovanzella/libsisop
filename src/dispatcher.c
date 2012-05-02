@@ -6,6 +6,12 @@
 
 struct pcb_t* find_next_of_equal_or_higher_priority(struct pcb_t* pcb)
 {
+	struct pcb_t* next = ready->pcb;
+	while (next->prio < pcb->prio) {
+		next = ready->next->pcb;
+	}
+
+	return next;
 }
 
 int dispatcher_init()
