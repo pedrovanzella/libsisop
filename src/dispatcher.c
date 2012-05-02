@@ -23,3 +23,7 @@ int dispatcher_init()
 
 	return 1;
 }
+
+void dispatcher()
+{
+}

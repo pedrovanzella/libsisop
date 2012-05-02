@@ -16,7 +16,11 @@ extern int current_pid;
 
 int libsisop_init()
 {
-	return dispatcher_init();
+	dispatcher_init();
+
+	mproc_create(2, (void*)dispatcher, (void*)NULL); /* Start the dispatcher */
+
+	return 1;
 }
 
 int mproc_create(int prio, void*(*start_routine)(void*), void * arg)
@@ -25,6 +29,11 @@ int mproc_create(int prio, void*(*start_routine)(void*), void * arg)
 		fprintf(stdout, "[-] Warning: trying to create process with priority higher than high. Defaulting to medium.\n");
 		prio = prio_medium;
 	}
+
+	if (prio == 2) {
+		fprintf(stdout, "[+] Creating a process with high priority. If this is not a system process, this might starve the dispatcher!\n");
+	}
+
 	struct pcb_t* pcb = new_pcb();
 
 	makecontext(pcb->context, (void *)(*start_routine), 1, arg);
