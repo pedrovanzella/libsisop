@@ -8,6 +8,6 @@ void say_hello()
 
 int main(int argc, char* argv[])
 {
-	mproc_create(2, (void *)say_hello, (void *)NULL);
+	mproc_create(1, (void *)say_hello, (void *)NULL);
 	return 0;
 }
